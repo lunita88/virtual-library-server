@@ -1,5 +1,5 @@
 
-const User = require(".models/users.model.js"),
+const User = require("../models/users.model.js"),
       jwt = require('jsonwebtoken'),
       nodemailer = require('nodemailer');
 

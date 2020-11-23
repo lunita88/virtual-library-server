@@ -1,6 +1,6 @@
 
 module.exports = app => {
-    const books = require(".controllers/books.controller.js");
+    const books = require("../controllers/books.controller.js");
   
     // Create a new book
     app.post("/book", books.create);

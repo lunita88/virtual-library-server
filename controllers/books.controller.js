@@ -1,5 +1,5 @@
 
-const Book = require(".models/books.model.js");
+const Book = require("../models/books.model.js");
 
 // Create and Save a new User
 exports.create = (req, res) => {
