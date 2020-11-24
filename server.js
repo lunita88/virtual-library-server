@@ -11,8 +11,8 @@ app.options('*', cors());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 
-require("./books.routes.js")(app);
-require("./user.routes.js")(app);
+require("./routes/books.routes.js")(app);
+require("./routes/user.routes.js")(app);
 
 app.get('/', (req, res) => {
     res.send('Hello World, from express');
