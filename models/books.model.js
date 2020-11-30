@@ -78,7 +78,7 @@ Book.findById = (bookId, result) => {
 
 Book.updateById = (isbn, book, result) => {
   sql.query(
-    "UPDATE Library SET isbn = ?, title = ?, author = ?, publish_date = ?, publisher = ?, numOfPages = ? WHERE isbn = ?",
+    "UPDATE Library SET isbn = ?, title = ?, author = ?,img = ?, publish_date = ?, publisher = ?, numOfPages = ? WHERE isbn = ?",
     [book.isbn, book.title, book.author, book.publish_date, book.publisher, book.numOfPages, isbn],
     (err, res) => {
       if (err) {
