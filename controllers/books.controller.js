@@ -15,6 +15,7 @@ exports.create = (req, res) => {
     isbn: req.body.isbn,
     title: req.body.title,
     author: req.body.author,
+    img: req.file.filname,
     publish_date: req.body.publish_date,
     publisher: req.body.publisher,
     numOfPages: req.body.numOfPages
