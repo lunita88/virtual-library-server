@@ -6,6 +6,7 @@ const Book = function(book) {
   this.isbn = book.isbn;
   this.title = book.title;
   this.author = book.author;
+  this.img = book.img;
   this.publish_date = book.publish_date;
   this.publisher = book.publisher;
   this.numOfPages = book.numOfPages;
