@@ -1,6 +1,9 @@
 
 const Book = require("../models/books.model.js");
 
+const fs = require('fs');
+const user = require("../models/users.model.js");
+
 // Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
@@ -46,6 +49,23 @@ exports.findAll = (req, res) => {
 
 // Delete a Book with the specified customerId in the request
 exports.delete = (req, res) => {
+  //remove file(img) from folder-'uploads'
+  Book.imgFind(req.params.bookId, (err, data) => {
+    var imgPath = process.env.PWD + '/uploads/' + data;
+    if (err) {
+       console.log("greska");
+    }else {
+      fs.unlink(imgPath, (err) => {
+        if (err) {
+           console.error(err)
+           return
+        }
+        //file removed
+      })
+      console.log(data + " image removed");
+    }
+  });
+  
   Book.remove(req.params.bookId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
@@ -89,6 +109,32 @@ exports.update = (req, res) => {
   }
 
   console.log(req.body);
+  const book = new Book({
+    isbn: req.body.isbn,
+    title: req.body.title,
+    author: req.body.author,
+    img: req.file.filename,
+    publish_date: req.body.publish_date,
+    publisher: req.body.publisher,
+    numOfPages: req.body.numOfPages
+  }); 
+  Book.imgFind(req.params.bookId, (err, imgName) => {
+    const imgPath = process.env.PWD + '/uploads/' + imgName;
+      if (err) {
+         console.log("greska");
+      }else {
+        fs.unlink(imgPath,(err) => {
+          if (err) {
+            console.error(err)
+            return
+         }
+        //file removed
+      })
+      console.log(imgName);
+    }
+
+  }); 
+
 
   Book.updateById(
     req.params.bookId,
