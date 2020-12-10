@@ -38,6 +38,20 @@ Book.getAll = result => {
   });
 };
 
+Book.imgFind = (bookId, result) => {
+  var imageReq =`SELECT img FROM Library WHERE isbn = ${bookId}`;
+    sql.query(imageReq, bookId, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    
+    console.log(res);
+    result(null, res[0].img);
+});
+};
+
 Book.remove = (isbn, result) => {
   sql.query("DELETE FROM Library WHERE isbn = ?", isbn, (err, res) => {
     if (err) {
@@ -79,7 +93,7 @@ Book.findById = (bookId, result) => {
 Book.updateById = (isbn, book, result) => {
   sql.query(
     "UPDATE Library SET isbn = ?, title = ?, author = ?,img = ?, publish_date = ?, publisher = ?, numOfPages = ? WHERE isbn = ?",
-    [book.isbn, book.title, book.author, book.publish_date, book.publisher, book.numOfPages, isbn],
+    [book.isbn, book.title, book.author, book.img, book.publish_date, book.publisher, book.numOfPages, isbn],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
