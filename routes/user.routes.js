@@ -14,5 +14,5 @@ module.exports = app => {
   app.get("/user/confirm/:token", users.confirm);
 
   // TEST: route protected with token
-  app.get("/test-protected", users.authenticateToken, users.testProtected);
+  //app.get("/test-protected", users.authenticateToken, users.testProtected);
 };
